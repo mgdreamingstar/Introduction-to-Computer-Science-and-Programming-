@@ -13,9 +13,8 @@ def str_add(a,s):
     return a
 
 s = 'abcdfkdslfjasabcfkdlsaefg'
-
-ind = 0
-jnd = 0
+s = 'abcabcd'
+s = 'fksdlfjsdlfjlsdafs'
 string_array = ['']
 
 for i in range(len(s)):
@@ -30,4 +29,4 @@ for i in range(len(s)):
         string_array.append(string)
 
 
-print(string_array)
+print(string_array[-1])
