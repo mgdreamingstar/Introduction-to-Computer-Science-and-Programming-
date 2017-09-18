@@ -2,7 +2,7 @@
 
 def str_add(a,s):
     global flag
-    if ord(a[-1]) < ord(s):
+    if ord(a[-1]) <= ord(s):
         a = a + s
     else:
         flag = False
@@ -11,6 +11,8 @@ def str_add(a,s):
 s = 'abcdfkdslfjasabcfkdlsaefg'
 s = 'abcabcd'
 s = 'fksdlfjsdlfjlsdafs'
+s = 'azcbobobegghakl'
+s = 'abcbcd'
 string_array = ['']
 
 for i in range(len(s)):
@@ -24,5 +26,14 @@ for i in range(len(s)):
     if len(string_array[-1]) <= len(string) :
         string_array.append(string)
 
+longest = ''
+longest_len = 0
+
+for i in range(1,len(string_array)):
+    if len(string_array[i-1]) < len(string_array[i]):
+        longest = string_array[i]
+    elif len(string_array[i-1]) == len(string_array[i]):
+        longest = string_array[i-1]
 
 print(string_array[-1])
+print(longest)
