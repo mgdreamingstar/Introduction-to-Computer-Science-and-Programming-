@@ -1,8 +1,4 @@
-def str_compare(s):
-    global string
-    if len(s) > len(string):
-        string = s
-    return string
+''' find the longest alphabetical order string '''
 
 def str_add(a,s):
     global flag
