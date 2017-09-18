@@ -18,8 +18,8 @@ string_array = ['']
 
 # TODO: CORRECT THESE
 s = 'zyxwvutsrqponmlkjihgfedcba'
-s = 'utzslpatah'
-s = 'txemwtgytfwquhiqimmlng'
+# s = 'utzslpatah'
+# s = 'txemwtgytfwquhiqimmlng's
 
 for i in range(len(s)):
     string = s[i]
@@ -39,7 +39,8 @@ for i in range(1,len(string_array)):
     if len(string_array[i-1]) < len(string_array[i]):
         longest = string_array[i]
     elif len(string_array[i-1]) == len(string_array[i]):
-        longest = string_array[i-1]
+        continue
 
 
 print('Longest substring in alphabetical order is:', longest)
+print(string_array)
