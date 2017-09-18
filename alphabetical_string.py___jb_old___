@@ -23,11 +23,12 @@ for i in range(len(s)):
     flag = True
     while flag:
         try:
-            string = str_add(string,s[i+len(string)])
+            string = str_add(string[-1],s[i+len(string)])
         except:
             break
-    if len(string_array[-1]) <= len(string) :
+    if 1 < len(string_array[-1]) <= len(string) :
         string_array.append(string)
 
 
-print(string_array)
+print(string)
+string_array
