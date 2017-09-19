@@ -1,0 +1,30 @@
+'''monthly % 10 == 0 每月付的钱应是10的倍数。'''
+
+import copy
+balance = [5000]
+annualInterestRate = 0.18
+
+def pay_debt(ba,annual):
+
+    balance = copy.deepcopy(ba)
+    monthly = 0
+    maxiter = (balance[0] % 10) // 2
+
+    while maxiter > 0:
+
+        monthly += 10
+        unbalance = []
+
+        for i in range(1,13):
+            unbalance.append(balance[i-1] - monthly)
+            balance.append(unbalance[i-1] * (1 + annualInterestRate / 12.0))
+
+        if balance[-1] > 0:
+            continue
+        elif balance[-1] < 0:
+            return monthly
+
+        print(balance[-1], monthly)
+        maxiter -= 1
+
+pay_debt(balance,annualInterestRate)
