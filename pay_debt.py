@@ -13,7 +13,7 @@ def lowest(b,a):
     unbalance = []
     balance_negative = 0
 
-    maxiter = 50
+    maxiter = 100
 
     while maxiter > 0:
         balance = copy.deepcopy(b)
@@ -37,14 +37,12 @@ def lowest(b,a):
         print(balance[-1], balance_negative)
         if balance[-1] > 0:
             low = monthly
-        elif balance[-1] < 0 and balance[-2] < 0:
+        elif balance[-1] < -0.1:
             high = monthly
-        elif balance[-1] < 0 and balance[-2] > 0 and abs(balance[-1]) > 100:
-            low = monthly
-        elif balance[-1] < 0 and balance[-2] > 0 and abs(balance[-1]) < 100:
+        else:
             return monthly
 
         monthly = (low + high) / 2
         maxiter -= 1
-        
+
 lowest(balance, annualInterestRate)
