@@ -13,7 +13,9 @@ def lowest(b,a):
     unbalance = []
     balance_negative = 0
 
-    while True:
+    maxiter = 50
+
+    while maxiter > 0:
         balance = copy.deepcopy(b)
         unbalance = []
         for i in range(1,13):
@@ -22,17 +24,27 @@ def lowest(b,a):
             # print 'balance %d = %d' %(i,balance[i])
 
         balance_negative = sum([i < 0 for i in balance])
-
-        if balance_negative == 0:
+        #
+        # if balance_negative == 0:
+        #     low = monthly
+        # elif balance_negative >= 2:
+        #     high = monthly
+        # elif abs(balance[-1]) < 100:
+        #     return monthly
+        # else:
+        #     print('wrong')
+        #     low = monthly
+        print(balance[-1], balance_negative)
+        if balance[-1] > 0:
             low = monthly
-        elif balance_negative >= 2:
+        elif balance[-1] < 0 and balance[-2] < 0:
             high = monthly
-        elif abs(balance[-1]) < 100:
-            return monthly
-        else:
-            print('wrong')
+        elif balance[-1] < 0 and balance[-2] > 0 and abs(balance[-1]) > 100:
             low = monthly
+        elif balance[-1] < 0 and balance[-2] > 0 and abs(balance[-1]) < 100:
+            return monthly
 
         monthly = (low + high) / 2
-        print(balance[-1], balance_negative)
+        maxiter -= 1
+        
 lowest(balance, annualInterestRate)
