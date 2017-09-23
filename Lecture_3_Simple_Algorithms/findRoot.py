@@ -76,13 +76,3 @@ def testFindRoot():
                 print('    No root')
             else:
                 print('    ' + str(res**power) + ' ~= ' + str(x))
-
-
-
-
-Highlight Mode is ON
-0 Highlights0 Comments
-Highlight to ShareCopy Link
-Share to
-Export to
-View All Highlights
