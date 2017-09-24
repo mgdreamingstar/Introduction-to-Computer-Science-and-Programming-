@@ -55,6 +55,14 @@ def isWordGuessed(secretWord, lettersGuessed):
       False otherwise
     '''
     # FILL IN YOUR CODE HERE...
+    flag = True
+    for letter in secretWord:
+        if letter in lettersGuessed:
+            continue
+        else:
+            flag = False
+            break
+    return flag
 
 
 
