@@ -128,7 +128,7 @@ def hangman(secretWord):
     while chance > 0 and not isWordGuessed(secretWord, lettersGuessed):
         print 'You have %d guesses left' %chance
         print 'Available letters: %s' %getAvailableLetters(lettersGuessed)
-        guess = raw_input('Please guess a letter:').lower()
+        guess = raw_input('Please guess a letter:\n').lower()
         if guess in lettersGuessed:
             print "Oops! You've already guessed that letter: %s \n ----------------- " %getGuessedWord(secretWord,lettersGuessed)
             continue
@@ -136,10 +136,10 @@ def hangman(secretWord):
         lettersGuessed.append(guess)
         if guess not in secretWord:
             chance -= 1
-            print 'Oops! That letter is not in my word: %s \n ----------------- ' %getGuessedWord(secretWord, lettersGuessed)
+            print 'Oops! That letter is not in my word: %s \n ----------------- s' %getGuessedWord(secretWord, lettersGuessed)
             continue
         elif guess in secretWord:
-            print 'Good guess: %s \n ----------------- ' %getGuessedWord(secretWord, lettersGuessed)
+            print 'Good guess: %s' %getGuessedWord(secretWord, lettersGuessed)
             continue
 
     if chance > 0:
@@ -148,7 +148,6 @@ def hangman(secretWord):
         print 'Sorry, you lose.'
 
     return None
-
 
 
 # When you've completed your hangman function, uncomment these two lines
