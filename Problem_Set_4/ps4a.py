@@ -173,8 +173,16 @@ def isValidWord(word, hand, wordList):
     hand: dictionary (string -> int)
     wordList: list of lowercase strings
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
+    # copy_hand = hand.copy()
+    word_freq = getFrequencyDict(word)
+    if word not in wordList:
+        return False
+    for letter in word_freq.keys():
+        if letter not in hand.keys():
+            return False
+        elif word_freq[letter] > hand[letter]:
+            return False
+    return True
 
 #
 # Problem #4: Playing a hand
