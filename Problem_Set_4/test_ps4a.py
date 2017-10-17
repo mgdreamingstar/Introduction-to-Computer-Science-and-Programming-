@@ -1,5 +1,6 @@
 from ps4a import *
-
+import os
+os.chdir(R'D:\Github\Introduction-to-Computer-Science-and-Programming-\Problem_Set_4')
 #
 # Test code
 # You don't need to understand how this test code works (but feel free to look it over!)
@@ -47,9 +48,9 @@ def test_updateHand():
         print "\tOriginal hand was", handOrig
         print "\tbut implementation of updateHand mutated the original hand!"
         print "\tNow the hand looks like this:", handCopy
-        
+
         return # exit function
-        
+
     # test 2
     handOrig = {'e':1, 'v':2, 'n':1, 'i':1, 'l':2}
     handCopy = handOrig.copy()
@@ -59,7 +60,7 @@ def test_updateHand():
     expectedHand1 = {'v':1, 'n':1, 'l':1}
     expectedHand2 = {'e':0, 'v':1, 'n':1, 'i':0, 'l':1}
     if hand2 != expectedHand1 and hand2 != expectedHand2:
-        print "FAILURE: test_updateHand('"+ word +"', " + str(handOrig) + ")"        
+        print "FAILURE: test_updateHand('"+ word +"', " + str(handOrig) + ")"
         print "\tReturned: ", hand2, "\n\t-- but expected:", expectedHand1, "or", expectedHand2
 
         return # exit function
@@ -69,7 +70,7 @@ def test_updateHand():
         print "\tOriginal hand was", handOrig
         print "\tbut implementation of updateHand mutated the original hand!"
         print "\tNow the hand looks like this:", handCopy
-        
+
         return # exit function
 
     # test 3
@@ -81,9 +82,9 @@ def test_updateHand():
     expectedHand1 = {}
     expectedHand2 = {'h': 0, 'e': 0, 'l': 0, 'o': 0}
     if hand2 != expectedHand1 and hand2 != expectedHand2:
-        print "FAILURE: test_updateHand('"+ word +"', " + str(handOrig) + ")"                
+        print "FAILURE: test_updateHand('"+ word +"', " + str(handOrig) + ")"
         print "\tReturned: ", hand2, "\n\t-- but expected:", expectedHand1, "or", expectedHand2
-        
+
         return # exit function
 
     if handCopy != handOrig:
@@ -91,7 +92,7 @@ def test_updateHand():
         print "\tOriginal hand was", handOrig
         print "\tbut implementation of updateHand mutated the original hand!"
         print "\tNow the hand looks like this:", handCopy
-        
+
         return # exit function
 
     print "SUCCESS: test_updateHand()"
@@ -140,7 +141,7 @@ def test_isValidWord(wordList):
         print "FAILURE: test_isValidWord()"
         print "\tExpected False, but got True for word: '" + word + "' and hand:", hand
 
-        failure = True        
+        failure = True
 
     # test 3
     hand = {'n': 1, 'h': 1, 'o': 1, 'y': 1, 'd':1, 'w':1, 'e': 2}
@@ -150,7 +151,7 @@ def test_isValidWord(wordList):
         print "FAILURE: test_isValidWord()"
         print "\tExpected True, but got False for word: '"+ word +"' and hand:", hand
 
-        failure = True                        
+        failure = True
 
     # test 4
     hand = {'r': 1, 'a': 3, 'p': 2, 't': 1, 'u':2}
@@ -159,28 +160,28 @@ def test_isValidWord(wordList):
     if  isValidWord(word, hand, wordList):
         print "FAILURE: test_isValidWord()"
         print "\tExpected False, but got True for word: '" + word + "' and hand:", hand
-        
+
         failure = True
 
     # test 5
     hand = {'e':1, 'v':2, 'n':1, 'i':1, 'l':2}
     word = "evil"
-    
+
     if  not isValidWord(word, hand, wordList):
         print "FAILURE: test_isValidWord()"
         print "\tExpected True, but got False for word: '" + word + "' and hand:", hand
-        
+
         failure = True
-        
+
     # test 6
     word = "even"
 
     if  isValidWord(word, hand, wordList):
         print "FAILURE: test_isValidWord()"
         print "\tExpected False, but got True for word: '" + word + "' and hand:", hand
-        print "\t(If this is the only failure, make sure isValidWord() isn't mutating its inputs)"        
-        
-        failure = True        
+        print "\t(If this is the only failure, make sure isValidWord() isn't mutating its inputs)"
+
+        failure = True
 
     if not failure:
         print "SUCCESS: test_isValidWord()"
