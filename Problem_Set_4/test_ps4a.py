@@ -1,6 +1,7 @@
-from ps4a import *
 import os
 os.chdir(R'D:\Github\Introduction-to-Computer-Science-and-Programming-\Problem_Set_4')
+from ps4a import *
+
 #
 # Test code
 # You don't need to understand how this test code works (but feel free to look it over!)
