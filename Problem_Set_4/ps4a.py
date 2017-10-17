@@ -184,6 +184,14 @@ def isValidWord(word, hand, wordList):
             return False
     return True
 
+def isInHand(word, hand, wordList):
+    word_freq = getFrequencyDict(word)
+    for letter in word_freq.keys():
+        if letter not in hand.keys():
+            return False
+        elif word_freq[letter] > hand[letter]:
+            return False
+    return True
 #
 # Problem #4: Playing a hand
 #
