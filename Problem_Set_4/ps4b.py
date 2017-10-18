@@ -68,8 +68,16 @@ def compPlayHand(hand, wordList, n):
     wordList: list (string)
     n: integer (HAND_SIZE; i.e., hand size required for additional points)
     """
-    # TO DO ... <-- Remove this comment when you code this function
-
+    score = 0
+    copy_hand = hand.copy()
+    while compChooseWord(copy_hand,wordList,n) != None:
+        print 'Current Hand:', displayHand(copy_hand)
+        word = compChooseWord(copy_hand,wordList,n)
+        score += getWordScore(word,n)
+        print repr(word), 'earned', getWordScore(word,n), 'points.', 'Total:', score, 'points.'
+        copy_hand = updateHand(copy_hand,word)
+    print 'Current Hand:', displayHand(copy_hand)
+    print 'Total score:', score
 #
 # Problem #8: Playing a game
 #
@@ -137,3 +145,7 @@ if __name__ == '__main__':
     print compChooseWord({'a': 2, 'c': 1, 'b': 1, 't': 1}, wordList, 5)
     print compChooseWord({'a': 2, 'e': 2, 'i': 2, 'm': 2, 'n': 2, 't': 2}, wordList, 12)
     print compChooseWord({'x': 2, 'z': 2, 'q': 2, 'n': 2, 't': 2}, wordList, 12)
+
+    print compPlayHand({'a': 1, 'p': 2, 's': 1, 'e': 1, 'l': 1}, wordList, 6)
+    print compPlayHand({'a': 2, 'c': 1, 'b': 1, 't': 1}, wordList, 5)
+    print compPlayHand({'a': 2, 'e': 2, 'i': 2, 'm': 2, 'n': 2, 't': 2}, wordList, 12)
