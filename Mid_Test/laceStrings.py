@@ -16,9 +16,11 @@ def laceStrings(s1, s2):
                 result += s1[idx:]
             elif len(s1) < len(s2):
                 result += s2[idx:]
+            break
     return result
 
 print laceStrings('abcd','efghi')
 print laceStrings('aaaaaa', 'zzzzzz')
 print laceStrings('', '')
 print laceStrings('fnjcszobd', 'oslpqyugc')
+print laceStrings('fdew', 'ohqbgmiulv') # Correct Answer: 'fodheqwbgmiulv'
