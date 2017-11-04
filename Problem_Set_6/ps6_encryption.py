@@ -80,7 +80,7 @@ def getStoryString():
     """
     Returns a story in encrypted text.
     """
-    return open("story.txt", "r").read()
+    return open("D:\Github\Introduction-to-Computer-Science-and-Programming-\Problem_Set_6\story.txt", "r").read()
 
 
 # (end of helper code)
@@ -147,7 +147,7 @@ def applyShift(text, shift):
     """
     ### HINT: This is a wrapper function.
     coder = buildCoder(shift)
-    return applyCoder(text,coder)
+    return applyCoder(text, coder)
 
 #
 # Problem 2: Decryption
@@ -168,17 +168,18 @@ def findBestShift(wordList, text):
     4. store the grade this shifted sentence gets
     5. find the max grade
     """
-    shift = 1
-    valid_word = 0
+    shift = 0
     max_valid = 0
     best_shift = 0
-    while shift <= 25:
-        text_old = applyShift(text, shift)
-        words_list = text_old.split(' ')
+    while shift <= 26:
+        valid_word = 0
+        text_origin = applyShift(text, shift)
+        words_list = text_origin.split(' ')
 
         for word in words_list:
             if isWord(wordList, word):
                 valid_word += 1
+
         if valid_word > max_valid:
             max_valid = valid_word
             best_shift = shift
@@ -194,9 +195,23 @@ def decryptStory():
 
     returns: string - story in plain text
     """
-    ### TODO.
-    return "Not yet implemented." # Remove this comment when you code the function
+    wordList = loadWords()
+    story = getStoryString()
+    shift = findBestShift(wordList, story)
+    return applyShift(story, shift)
 
+def decryptStory_new(story):
+    """
+    Using the methods you created in this problem set,
+    decrypt the story given by the function getStoryString().
+    Use the functions getStoryString and loadWords to get the
+    raw data you need.
+
+    returns: string - story in plain text
+    """
+    wordList = loadWords()
+    shift = findBestShift(wordList, story)
+    return applyShift(story, shift)
 #
 # Build data structures used for entire session and run encryption
 #
@@ -209,6 +224,12 @@ if __name__ == '__main__':
     assert applyShift(s, bestShift) == 'Hello, world!'
     # To test decryptStory, comment the above four lines and uncomment this line:
     #    decryptStory()
-    s
-    print bestShift
-    applyShift(s,18)
+    print decryptStory_new('Nonsense words: ticket relief from full marry abroad offend pinch first reproduction matter cool outside cave spite straight religion pool sign moderate safety hour whatever spare idea book log surround hasten cross favorite director manner preference relation')
+    print decryptStory_new('Cdchtcht ldgsh: ixrzti gtaxtu ugdb ujaa bpggn pqgdps duutcs excrw uxghi gtegdsjrixdc bpiitg rdda djihxst rpkt hexit higpxvwi gtaxvxdc edda hxvc bdstgpit hputin wdjg lwpitktg hepgt xstp qddz adv hjggdjcs wphitc rgdhh upkdgxit sxgtridg bpcctg egtutgtcrt gtapixdc')
+    print decryptStory()
+    findBestShift(wordList, 'Uryyb, jbeYQ!')
+    findBestShift(wordList, 'Dro aEsJ sC... rkbn!')
+    applyShift('Dro aEsJ sC... rkbn!', 16)
+    story = getStoryString()
+    findBestShift(wordList, story)
+    applyShift(story, 16)
