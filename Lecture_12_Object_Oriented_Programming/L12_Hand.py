@@ -86,6 +86,8 @@ class Hand(object):
         # Your code here
         copy_hand = self.hand.copy()
         for letter in word:
+            if letter not in copy_hand.keys():
+                return False
             if copy_hand[letter] >= 1:
                 copy_hand[letter] -= 1
             else:
@@ -102,4 +104,9 @@ print myHand
 print myHand.calculateLen()
 
 myHand.update('za')
+print myHand
+
+myHand = Hand(12)
+myHand.setDummyHand('ccootccrwmqt')
+myHand.update('chayote')
 print myHand
