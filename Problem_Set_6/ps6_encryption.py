@@ -13,7 +13,7 @@ WORDLIST_FILENAME = "Problem_Set_6/words.txt"
 def loadWords():
     """
     Returns a list of valid words. Words are strings of lowercase letters.
-    
+
     Depending on the size of the word list, this function may
     take a while to finish.
     """
@@ -45,7 +45,7 @@ def randomWord(wordList):
     """
     Returns a random word.
 
-    wordList: list of words  
+    wordList: list of words
     returns: a word from wordList at random
     """
     return random.choice(wordList)
@@ -125,8 +125,14 @@ def applyCoder(text, coder):
     coder: dict with mappings of characters to shifted characters
     returns: text after mapping coder chars to original text
     """
-    ### TODO.
-    return "Not yet implemented." # Remove this comment when you code the function
+    out = []
+    for letter in text:
+        if letter in string.ascii_uppercase or letter in string.ascii_lowercase:
+            out.append(coder[letter])
+        else:
+            out.append(letter)
+
+    return ''.join(out)
 
 def applyShift(text, shift):
     """
