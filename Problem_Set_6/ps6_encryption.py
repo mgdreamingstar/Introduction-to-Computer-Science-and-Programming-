@@ -5,7 +5,7 @@
 import string
 import random
 
-WORDLIST_FILENAME = "words.txt"
+WORDLIST_FILENAME = "Problem_Set_6/words.txt"
 
 # -----------------------------------
 # Helper code
@@ -32,9 +32,9 @@ def isWord(wordList, word):
     returns True if word is in wordList.
 
     Example:
-    >>> isWord(wordList, 'bat') returns
+    # >>> isWord(wordList, 'bat') returns
     True
-    >>> isWord(wordList, 'asdf') returns
+    # >>> isWord(wordList, 'asdf') returns
     False
     """
     word = word.lower()
@@ -99,8 +99,23 @@ def buildCoder(shift):
     shift: 0 <= int < 26
     returns: dict
     """
-    ### TODO.
-    return "Not yet implemented." # Remove this comment when you code the function
+    assert 0 <= shift <= 26
+    before_up = string.ascii_uppercase
+    before_low = string.ascii_lowercase
+    after_up = []
+    after_low = []
+    for letter in before_up:
+        ind = (before_up.index(letter) + shift) % 26
+        after_up.append(before_up[ind])
+    for letter in before_low:
+        ind = (before_low.index(letter) + shift) % 26
+        after_low.append(before_low[ind])
+
+    before = before_up + before_low
+    after = after_up + after_low
+
+    dict_out = dict(zip(before,after))
+    return dict_out
 
 def applyCoder(text, coder):
     """
