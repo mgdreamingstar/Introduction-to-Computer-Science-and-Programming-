@@ -5,7 +5,7 @@
 import string
 import random
 
-WORDLIST_FILENAME = "Problem_Set_6/words.txt"
+WORDLIST_FILENAME = "D:\Github\Introduction-to-Computer-Science-and-Programming-\Problem_Set_6\words.txt"
 
 # -----------------------------------
 # Helper code
@@ -159,8 +159,31 @@ def findBestShift(wordList, text):
     text: string
     returns: 0 <= int < 26
     """
-    ### TODO
-    return "Not yet implemented." # Remove this comment when you code the function
+
+    """
+    my pseudo code:
+    1. try with shift = 1 to 25
+    2. split words with space
+    3. check if every words is in wordlist
+    4. store the grade this shifted sentence gets
+    5. find the max grade
+    """
+    shift = 1
+    valid_word = 0
+    max_valid = 0
+    best_shift = 0
+    while shift <= 25:
+        text_old = applyShift(text, shift)
+        words_list = text_old.split(' ')
+
+        for word in words_list:
+            if isWord(wordList, word):
+                valid_word += 1
+        if valid_word > max_valid:
+            max_valid = valid_word
+            best_shift = shift
+        shift += 1
+    return best_shift
 
 def decryptStory():
     """
@@ -186,3 +209,6 @@ if __name__ == '__main__':
     assert applyShift(s, bestShift) == 'Hello, world!'
     # To test decryptStory, comment the above four lines and uncomment this line:
     #    decryptStory()
+    s
+    print bestShift
+    applyShift(s,18)
