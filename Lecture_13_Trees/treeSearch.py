@@ -34,7 +34,7 @@ def DFSBinary(root, fcn):
         else:
             temp = queue.pop(0)
             if temp.getRightBranch():
-                queue.insert(0, temp.getRightBranch())
+                queue.insert(0, temp.getRightBranch()) # stack
             if temp.getLeftBranch():
                 queue.insert(0, temp.getLeftBranch())
     return False
@@ -49,7 +49,7 @@ def BFSBinary(root, fcn):
         else:
             temp = queue.pop(0)
             if temp.getLeftBranch():
-                queue.append(temp.getLeftBranch())
+                queue.append(temp.getLeftBranch()) # queue
             if temp.getRightBranch():
                 queue.append(temp.getRightBranch())
     return False
