@@ -95,7 +95,7 @@ class Trigger(object):
 '''
 class WordTrigger(Trigger):
     def __init__(self, word):
-        self.word = word.lower()
+        self.word = word
 
     def isWordIn(self, text):
         s_copy = text
@@ -186,7 +186,7 @@ def filterStories(stories, triggerlist):
     out_stories = []
     for trigger in triggerlist:
         for story in stories:
-            if trigger.evaluate(story) and story.getTitle() not in out_stories:
+            if trigger.evaluate(story) and (story.getTitle() not in out_stories):
                 out_stories.append(story)
     return out_stories
 
@@ -211,10 +211,40 @@ def makeTrigger(triggerMap, triggerType, params, name):
     Returns a new instance of a trigger (ex: TitleTrigger, AndTrigger).
     """
     # TODO: Problem 11
+    '''
+    TITLE
+    SUBJECT
+    SUMMARY
+    NOT
+    AND
+    OR
+    PHRASE
+    '''
+    if triggerType == 'TITLE':
+        trigger = TitleTrigger(params[0])
+    elif triggerType == 'SUBJECT':
+        trigger = SubjectTrigger(params[0])
+    elif triggerType == 'SUMMARY':
+        trigger = SummaryTrigger(params[0])
+    elif triggerType == 'NOT':
+        trigger = NotTrigger(triggerMap[params[0]])
+    elif triggerType == 'AND':
+        t1 = params[0]
+        t2 = params[1]
+        trigger = AndTrigger(triggerMap[t1], triggerMap[t2])
+    elif triggerType == 'OR':
+        t1 = params[0]
+        t2 = params[1]
+        trigger = OrTrigger(triggerMap[t1], triggerMap[t2])
+    elif triggerType == 'PHRASE':
+        trigger = PhraseTrigger(' '.join(params))
 
+    triggerMap[name] = trigger
+
+    return trigger
 
 def readTriggerConfig(filename):
-    """
+    """ 
     Returns a list of trigger objects
     that correspond to the rules set
     in the file filename
@@ -237,14 +267,14 @@ def readTriggerConfig(filename):
     # Be sure you understand this code - we've written it for you,
     # but it's code you should be able to write yourself
     for line in lines:
-
+        print line
         linesplit = line.split(" ")
 
         # Making a new trigger
         if linesplit[0] != "ADD":
             trigger = makeTrigger(triggerMap, linesplit[1],
                                   linesplit[2:], linesplit[0])
-
+            print type(trigger)
         # Add the triggers to the list
         else:
             for name in linesplit[1:]:
@@ -254,7 +284,7 @@ def readTriggerConfig(filename):
     
 import thread
 
-SLEEPTIME = 60 #seconds -- how often we poll
+SLEEPTIME = 5 #seconds -- how often we poll
 
 
 def main_thread(master):
@@ -270,7 +300,7 @@ def main_thread(master):
         
         # TODO: Problem 11
         # After implementing makeTrigger, uncomment the line below:
-        # triggerlist = readTriggerConfig("triggers.txt")
+        triggerlist = readTriggerConfig(R"D:\Github\Introduction-to-Computer-Science-and-Programming-\Problem_Set_7\triggers.txt")
 
         # **** from here down is about drawing ****
         frame = Frame(master)
