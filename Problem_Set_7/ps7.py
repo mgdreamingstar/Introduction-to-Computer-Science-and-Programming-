@@ -156,7 +156,19 @@ class OrTrigger(Trigger):
 # Question 9
 
 # TODO: PhraseTrigger
+class PhraseTrigger(Trigger):
+    def __init__(self, phrase):
+        self.phrase = phrase
 
+    def evaluate(self, story):
+        if self.phrase in story.getTitle():
+            return True
+        elif self.phrase in story.getSummary():
+            return True
+        elif self.phrase in story.getSubject():
+            return True
+        else:
+            return False
 
 #======================
 # Part 3
