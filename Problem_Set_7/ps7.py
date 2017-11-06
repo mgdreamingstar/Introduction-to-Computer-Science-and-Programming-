@@ -85,10 +85,43 @@ class Trigger(object):
 # Problems 2-5
 
 # TODO: WordTrigger
+'''pseudo code
+1. erase punctuations
+    - for
+    - replace
+2. lower
+3. split
+4. find
+'''
+class WordTrigger(Trigger):
+    def __init__(self, word):
+        self.word = word.lower()
+
+    def isWordIn(self, text):
+        s_copy = text
+        for punc in string.punctuation:
+            s_copy = s_copy.replace(punc, ' ')
+
+        s_copy = s_copy.lower()
+        s_copy = s_copy.split(' ')
+        if self.word in s_copy:
+            return True
+        return False
 
 # TODO: TitleTrigger
+class TitleTrigger(WordTrigger):
+    def evaluate(self, story):
+        return self.isWordIn(story.getTitle())
+
 # TODO: SubjectTrigger
+class SubjectTrigger(WordTrigger):
+    def evaluate(self, story):
+        return self.isWordIn(story.getSubject())
+
 # TODO: SummaryTrigger
+class SummaryTrigger(WordTrigger):
+    def evaluate(self, story):
+        return self.isWordIn(story.getSummary())
 
 
 # Composite Triggers
