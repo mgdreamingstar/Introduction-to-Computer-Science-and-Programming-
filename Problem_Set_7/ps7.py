@@ -128,6 +128,13 @@ class SummaryTrigger(WordTrigger):
 # Problems 6-8
 
 # TODO: NotTrigger
+class NotTrigger(Trigger):
+    def __init__(self, t):
+        self.t = t
+
+    def evaluate(self, story):
+        return not self.t.evaluate(story)
+    
 # TODO: AndTrigger
 # TODO: OrTrigger
 
