@@ -128,12 +128,13 @@ class Family(object):
           The absolute value of the difference between the
           distance from each node to their common ancestor.
         """
+        distance = self.distance_to_ancestor(a, b)
         if a == b:
-            return -1
-        elif self.is_descendant(a, b):
-            return -1
-
-        pass
+            return -1, 0
+        elif self.is_descendant(a, b) or self.is_descendant(b, a):
+            return -1, max(distance) - min(distance)
+        else:
+            return min(distance) - 1, max(distance) - min(distance)
 
     def is_descendant(self, a, b):
         '''
@@ -163,8 +164,14 @@ class Family(object):
         1. find number of layer in family.name_to_nodes
         2. find which layer are a and b in.
         '''
-        distance = [0, 0]
-        pass
+        layer = [None, None]  # distance
+        structure = self.restructure()
+        for i in range(len(structure)):
+            if a in structure[i]:
+                layer[0] = i
+            if b in structure[i]:
+                layer[1] = i
+        return layer
 
     def restructure(self):
 
@@ -179,7 +186,7 @@ class Family(object):
                     if self.names_to_nodes[layer[-1][i]].children != [] and self.is_parent(layer[-1][i], member):
                         this_layer.append(member)
             layer.append(this_layer)
-            print layer
+            # print layer
         return layer
 
 f = Family("a")
@@ -224,3 +231,6 @@ print "'h' is a", words[t], "cousin", r, "removed from 'h'"
 
 t, r = f.cousin("a", "a")
 print "'a' is a", words[t], "cousin", r, "removed from 'a'"
+
+t, r = f.cousin("f", "l")
+print "'f' is a", words[t], "cousin", r, "removed from 'l'"
