@@ -128,6 +128,11 @@ class Family(object):
           The absolute value of the difference between the
           distance from each node to their common ancestor.
         """
+        if a == b:
+            return -1
+        elif self.is_descendant(a, b):
+            return -1
+
         pass
 
     def is_descendant(self, a, b):
@@ -147,6 +152,35 @@ class Family(object):
                     for child in self.names_to_nodes[temp].children:
                         queue.insert(0, child.name)
         return False
+
+    def distance_to_ancestor(self, a, b):
+        '''
+        find the common ancestor and their distance to him
+        :param a: name of a family member
+        :param b: mane of a family member
+        :return: (distance_a, distance_b)
+
+        1. find number of layer in family.name_to_nodes
+        2. find which layer are a and b in.
+        '''
+        distance = [0, 0]
+        pass
+
+    def restructure(self):
+
+        members = self.names_to_nodes.keys()
+        layer = []
+        layer.append([members.pop(0)])
+        n = len(members)
+        while sum([len(x) for x in layer]) != n + 1:
+            this_layer = []
+            for i in range(len(layer[-1])):
+                for member in members:
+                    if self.names_to_nodes[layer[-1][i]].children != [] and self.is_parent(layer[-1][i], member):
+                        this_layer.append(member)
+            layer.append(this_layer)
+            print layer
+        return layer
 
 f = Family("a")
 f.set_children("a", ["b", "c"])
