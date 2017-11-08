@@ -244,7 +244,7 @@ def makeTrigger(triggerMap, triggerType, params, name):
     return trigger
 
 def readTriggerConfig(filename):
-    """ 
+    """
     Returns a list of trigger objects
     that correspond to the rules set
     in the file filename
