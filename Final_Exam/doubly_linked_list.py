@@ -60,6 +60,11 @@ def insert(atMe, newFrob):
                 newFrob.setAfter(item)
                 item.setBefore(newFrob)
 
+def findFront(start):
+    if start.getBefore() == None:
+        return start
+    else:
+        return findFront(start.getBefore())
 
 eric = Frob('eric')
 andrew = Frob('andrew')
@@ -79,3 +84,5 @@ print 'after', eric.after.name
 insert(ruth, martha)
 
 print ruth.getBefore().name
+
+print findFront(eric).name
