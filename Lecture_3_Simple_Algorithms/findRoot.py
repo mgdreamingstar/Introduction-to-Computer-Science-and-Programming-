@@ -6,6 +6,7 @@ def findRoot1(x, power, epsilon):
     low = 0
     high = x
     ans = (high+low)/2.0
+    # 判断是否满足精度
     while abs(ans**power - x) > epsilon:
         if ans**power < x:
             low = ans
@@ -73,6 +74,6 @@ def testFindRoot():
                   ' and power = ' + str(power))
             res = findRoot3(x, power, epsilon)
             if res == None:
-                print('    No root')
+                print('No root')
             else:
-                print('    ' + str(res**power) + ' ~= ' + str(x))
+                print(' ' + str(res**power) + ' ~= ' + str(x))
