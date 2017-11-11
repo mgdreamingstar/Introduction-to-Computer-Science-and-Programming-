@@ -3,10 +3,11 @@
 # root code
 
 def findRoot1(x, power, epsilon):
+    '''try to find x's root'''
     low = 0
     high = x
     ans = (high+low)/2.0
-    # 判断是否满足精度
+    # precision need to less than epsilon
     while abs(ans**power - x) > epsilon:
         if ans**power < x:
             low = ans
