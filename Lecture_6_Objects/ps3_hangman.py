@@ -14,7 +14,7 @@ import string
 import os
 os.chdir(R'D:\Github\Introduction-to-Computer-Science-and-Programming-\Lecture_6_Objects')
 WORDLIST_FILENAME = "words.txt"
-
+# try in Editorial
 def loadWords():
     """
     Returns a list of valid words. Words are strings of lowercase letters.
