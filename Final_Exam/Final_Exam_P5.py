@@ -52,10 +52,16 @@ class edx(object):
         returns: the integer grade for `course`.
         If `course` was not part of the initialization, returns -1.
         """
-        #   fill in code to get the grade
+        #   fill in code to get the grade 
+        flag = False
         for the_course in self.myCourses:
             if the_course.courseName == course:
                 the_course.getGrade()
+                flag = True
+        else:
+            if flag == True:
+                return -1
+        
 
     def setPset(self, pset, score, course="6.00x"):
         """
@@ -71,9 +77,7 @@ class edx(object):
         """
         #   fill in code to set the pset
         for the_course in self.myCourses:
-            print type(course)
             if the_course.courseName == course:
-                print (course)
                 the_course.psetsDone.append((pset, score))
 
     def getPset(self, pset, course="6.00x"):
@@ -93,11 +97,21 @@ class edx(object):
                         return score
 
 edX = edx(["6.00x", "6.01x", "6.02x"])
-edX.setPset(1, 100)
-edX.setPset(2, 100, "6.00x")
-edX.setPset(2, 90, "6.00x")
-
+print [e.courseName for e in edX.myCourses]
+print [e.grade for e in edX.myCourses]
 edX.setGrade(100)
+print [e.grade for e in edX.myCourses]
+edX.myCourses[0].setGrade(90)
+print [e.grade for e in edX.myCourses]
+
+edX.setPset(1, 100)
+print edX.myCourses[0].psetsDone
+
+edX.setPset(2, 100, "6.00x")
+print edX.myCourses[0].psetsDone
+edX.setPset(2, 90, "6.00x")
+print edX.myCourses[0].psetsDone
+print edX.getPset(2)
 
 for c in ["6.00x", "6.01x", "6.02x"]:
     edX.setGrade(90, c)
