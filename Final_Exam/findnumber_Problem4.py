@@ -1,3 +1,4 @@
+# -*-coding:utf-8 -*-
 # # 6.00.1x Final Exam
 # def secretNum(guess):
 #     secret = 10
@@ -24,7 +25,7 @@
 #
 # print findNum()
 def isMyNumber(guess):
-    secret = -24 # 10 原来只要大于的都没问题。因第一个条件判断 == 1 错了，应为 == 0.
+    secret = -24  # 10 原来只要大于的都没问题。因第一个条件判断 == 1 错了，应为 == 0.
     if guess > secret:
         return 1
     elif guess < secret:
