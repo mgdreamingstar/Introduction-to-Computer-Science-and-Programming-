@@ -2,7 +2,7 @@
 # doubly_linked_list_Problem7.py
 # 2017/11/9 21:42 
 
-class Frob(objec):
+class Frob(object):
     def __init__(self, name):
         self.name = name
         self.before = None
@@ -50,15 +50,20 @@ def insert(atMe, newFrob):
     # search from start to end
     while pointer.after != None:
 
+        # insert at beginning
+        if newFrob.name[0] <= pointer.name[0] and pointer.getBefore() == None:
+            pointer.setBefore(newFrob)
+            newFrob.setAfter(pointer)
+            return # end this
+        # insert at middle
         # find the one after newFrob
-        if newFrob.name[0] <= pointer.name[0]: # if newFrob <= pointer, insert before it.
+        elif newFrob.name[0] <= pointer.name[0]:   # if newFrob <= pointer, insert before it.
             temp = pointer.getBefore()
             pointer.setBefore(newFrob)
             temp.setAfter(newFrob)
             newFrob.setBefore(temp)
             newFrob.setAfter(pointer)
             return # end this
-
         # move to next Frob
         pointer = pointer.getAfter() # pointer = start + 1
 
@@ -109,4 +114,5 @@ def findFront(start):
         return start
     else:
         return findFront(start.getBefore())
+
 

@@ -35,5 +35,40 @@ class TestFrob(TestCase):
         # andrew <- eric <- fred <- martha <- ruth
         assert fred.getAfter().name == 'martha'
         assert martha.getBefore().name == 'fred'
-        assert martha.getAfter().name == 'fred'
+        assert martha.getAfter().name == 'ruth'
         assert ruth.getBefore().name == 'martha'
+
+    def multi_names(self):
+        test_list = Frob('zsa zsa')
+        a = Frob('ashley')
+        m = Frob('marcella')
+        v = Frob('victor')
+        insert(test_list, m)
+        assert m.getAfter().name == 'zsa zsa'
+        assert test_list.getBefore().name == 'marcella'
+        'marcella, zsa zsa'
+        insert(m, a)
+
+        insert(a, v)
+        assert a.getAfter().name == 'marcella'
+        assert v.getBefore().name == 'marcella'
+        assert m.getAfter().name == 'victor'
+        assert v.getAfter().name == 'zsa zsa'
+        assert test_list.getBefore().name == 'victor'
+
+    def multi_names2(self):
+        test_list = Frob('mark')
+        c = Frob('craig')
+        insert(test_list, Frob("sam"))
+        assert test_list.getAfter().name == 'sam'
+        insert(test_list, Frob("nick"))
+        assert test_list.getAfter().name == 'nick'
+        assert test_list.getAfter().getAfter().name == 'sam'
+        insert(test_list, c)
+        assert test_list.getBefore().name == 'craig'
+        insert(c, Frob("xanthi"))
+        'craig mark nick sam xanthi'
+        assert test_list.getAfter().getAfter().getAfter().name == 'xanthi'
+        insert(test_list, Frob("jayne"))
+        'craig jayne mark nick sam xanthi'
+        assert c.getAfter().name == 'jayne'
