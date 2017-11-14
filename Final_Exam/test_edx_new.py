@@ -1,14 +1,15 @@
+# -*-coding:utf-8 -*-
 # Author: guorch@buaa.edu.cn
-# test_edx.py
+# test_edx_new.py
+# 2017/11/14 18:50
+
 import unittest
-# 2017/11/12 16:16
-from CourceInfo_Final_Exam_P5 import  * # edx, courseInfo
+from CourceInfo_Final_Exam_P5 import * # edx, courseInfo
 
 class TestEdx(unittest.TestCase):
     def test_edx(self):
         edX = edx(["6.00x", "6.01x", "6.02x"])
         self.assertEqual([e.courseName for e in edX.myCourses], [courseInfo("6.00x").courseName, courseInfo("6.01x").courseName, courseInfo("6.02x").courseName])
-        # self.assertEqual(edX.myCourses, [courseInfo("6.00x"), courseInfo("6.01x"), courseInfo("6.02x")])
 
     def test_setGrade(self):
         edX = edx(["6.00x", "6.01x", "6.02x"])

@@ -60,7 +60,7 @@ class edx(object):
                 return the_course.getGrade()
 
         else:
-            if flag == True:
+            if flag == False:
                 return -1
         
 
@@ -91,11 +91,16 @@ class edx(object):
         If `course` was not part of the initialization, returns -1.
         """
         #   fill in code to get the pset
+        flag = False
         for the_course in self.myCourses:
             if the_course.courseName == course:
+                flag = True
                 for (p, score) in the_course.psetsDone:
                     if p == pset:
                         return score
+        else:
+            if not flag:
+                return -1
 
 # edX = edx(["6.00x", "6.01x", "6.02x"])
 # print [e.courseName for e in edX.myCourses]
