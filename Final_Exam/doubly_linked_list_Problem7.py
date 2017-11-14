@@ -107,12 +107,21 @@ def insert_new(atMe, newFrob):
     if newFrob.name[0] <= atMe.getBefore.name[0]:
         pointer = atMe.getBefore()
 
-
-
 def findFront(start):
     if start.getBefore() == None:
         return start
     else:
         return findFront(start.getBefore())
 
+def walk_through(frob):
+    pointer = frob
+    chain = []
+    while pointer.getBefore() != None:
+        pointer = pointer.getBefore()
 
+    while pointer.getAfter() != None:
+        chain.append(pointer.name)
+        pointer = pointer.getAfter()
+    else:
+        chain.append(pointer.name)
+    return chain

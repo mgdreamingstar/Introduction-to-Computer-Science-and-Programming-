@@ -4,7 +4,7 @@
 from unittest import TestCase
 
 # 2017/11/13 20:12
-from doubly_linked_list_Problem7 import Frob, insert
+from doubly_linked_list_Problem7 import Frob, insert, walk_through
 
 class TestFrob(TestCase):
     def test_setBefore(self):
@@ -19,56 +19,77 @@ class TestFrob(TestCase):
 
         insert(eric, andrew)
         # andrew <- eric
-        assert eric.getBefore().name == 'andrew'
-        assert andrew.getAfter().name == 'eric'
+        self.assertEqual(eric.getBefore().name, 'andrew')
+        self.assertEqual(andrew.getAfter().name, 'eric')
         insert(eric, ruth)
         # andrew <- eric <- ruth
-        assert eric.getAfter().name == 'ruth'
-        assert ruth.getBefore().name == 'eric'
+        self.assertEqual(eric.getAfter().name, 'ruth')
+        self.assertEqual(ruth.getBefore().name, 'eric')
         insert(eric, fred)
         # andrew <- eric <- fred <- ruth
-        assert eric.getAfter().name == 'fred'
-        assert fred.getBefore().name == 'eric'
-        assert fred.getAfter().name == 'ruth'
-        assert ruth.getBefore().name == 'fred'
+        self.assertEqual(eric.getAfter().name, 'fred')
+        self.assertEqual(fred.getBefore().name, 'eric')
+        self.assertEqual(fred.getAfter().name, 'ruth')
+        self.assertEqual(ruth.getBefore().name, 'fred')
         insert(ruth, martha)
         # andrew <- eric <- fred <- martha <- ruth
-        assert fred.getAfter().name == 'martha'
-        assert martha.getBefore().name == 'fred'
-        assert martha.getAfter().name == 'ruth'
-        assert ruth.getBefore().name == 'martha'
+        self.assertEqual(fred.getAfter().name, 'martha')
+        self.assertEqual(martha.getBefore().name, 'fred')
+        self.assertEqual(martha.getAfter().name, 'ruth')
+        self.assertEqual(ruth.getBefore().name, 'martha')
+        # walk_through
+        self.assertEqual(walk_through(eric), ['andrew', 'eric', 'fred', 'martha', 'ruth'])
 
-    def multi_names(self):
+    def test_multi_names(self):
         test_list = Frob('zsa zsa')
         a = Frob('ashley')
         m = Frob('marcella')
         v = Frob('victor')
         insert(test_list, m)
-        assert m.getAfter().name == 'zsa zsa'
-        assert test_list.getBefore().name == 'marcella'
+        self.assertEqual(m.getAfter().name, 'zsa zsa')
+        self.assertEqual(test_list.getBefore().name, 'marcella')
         'marcella, zsa zsa'
         insert(m, a)
 
         insert(a, v)
-        assert a.getAfter().name == 'marcella'
-        assert v.getBefore().name == 'marcella'
-        assert m.getAfter().name == 'victor'
-        assert v.getAfter().name == 'zsa zsa'
-        assert test_list.getBefore().name == 'victor'
+        self.assertEqual(a.getAfter().name, 'marcella')
+        self.assertEqual(v.getBefore().name, 'marcella')
+        self.assertEqual(m.getAfter().name, 'victor')
+        self.assertEqual(v.getAfter().name, 'zsa zsa')
+        self.assertEqual(test_list.getBefore().name, 'victor')
 
-    def multi_names2(self):
+        # walk through
+        self.assertEqual(walk_through(test_list), ['ashley', 'marcella', 'victor', 'zsa zsa'])
+
+    def test_multi_names2(self):
         test_list = Frob('mark')
         c = Frob('craig')
         insert(test_list, Frob("sam"))
-        assert test_list.getAfter().name == 'sam'
+        self.assertEqual(test_list.getAfter().name, 'sam')
         insert(test_list, Frob("nick"))
-        assert test_list.getAfter().name == 'nick'
-        assert test_list.getAfter().getAfter().name == 'sam'
+        self.assertEqual(test_list.getAfter().name, 'nick')
+        self.assertEqual(test_list.getAfter().getAfter().name, 'sam')
         insert(test_list, c)
-        assert test_list.getBefore().name == 'craig'
+        self.assertEqual(test_list.getBefore().name, 'craig')
         insert(c, Frob("xanthi"))
         'craig mark nick sam xanthi'
-        assert test_list.getAfter().getAfter().getAfter().name == 'xanthi'
+        self.assertEqual(test_list.getAfter().getAfter().getAfter().name, 'xanthi')
         insert(test_list, Frob("jayne"))
         'craig jayne mark nick sam xanthi'
-        assert c.getAfter().name == 'jayne'
+        self.assertEqual(c.getAfter().name, 'jayne')
+
+    def test_multi_names3(self):
+        test_list = Frob('eric')
+        insert(test_list, Frob("eric"))
+        insert(test_list, Frob("chris"))
+        insert(test_list, Frob("john"))
+        insert(test_list, Frob("john"))
+        insert(test_list, Frob("chris"))
+        insert(test_list, Frob("eric"))
+        insert(test_list, Frob("john"))
+        insert(test_list, Frob("chris"))
+
+        self.assertEqual(walk_through(test_list), ['chris', 'chris', 'chris', 'eric', 'eric', 'eric', 'john', 'john', 'john'])
+
+if __name__ == '__main__':
+    unittest.main()
