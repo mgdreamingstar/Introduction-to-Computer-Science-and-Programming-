@@ -102,22 +102,3 @@ class edx(object):
             if not flag:
                 return -1
 
-# edX = edx(["6.00x", "6.01x", "6.02x"])
-# print [e.courseName for e in edX.myCourses]
-# print [e.grade for e in edX.myCourses]
-# edX.setGrade(100)
-# print [e.grade for e in edX.myCourses]
-# edX.myCourses[0].setGrade(90)
-# print [e.grade for e in edX.myCourses]
-#
-# edX.setPset(1, 100)
-# print edX.myCourses[0].psetsDone
-#
-# edX.setPset(2, 100, "6.00x")
-# print edX.myCourses[0].psetsDone
-# edX.setPset(2, 90, "6.00x")
-# print edX.myCourses[0].psetsDone
-# print edX.getPset(2)
-#
-# for c in ["6.00x", "6.01x", "6.02x"]:
-#     edX.setGrade(90, c)
